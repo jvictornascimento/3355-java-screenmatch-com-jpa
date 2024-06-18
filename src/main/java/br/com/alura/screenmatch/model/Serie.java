@@ -24,7 +24,7 @@ public class Serie {
     private String atores;
     private String imagemDeCapa;
     private String sinopse;
-    @Transient //anotacao para que a jpa nao persista o atributo no campo
+   @OneToMany(mappedBy = "serie",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Episodio> episodios = new ArrayList<>();
 
 
@@ -111,6 +111,7 @@ public class Serie {
     }
 
     public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e->e.setSerie(this));
         this.episodios = episodios;
     }
 
@@ -136,6 +137,7 @@ public class Serie {
                 ", atores='" + atores +
                 ", imagemDeCapa='" + imagemDeCapa +
                 ", sinopse='" + sinopse +
+                ", episodios='" + episodios +
                 '}';
     }
 }
