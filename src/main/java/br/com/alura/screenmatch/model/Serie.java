@@ -1,11 +1,8 @@
 package br.com.alura.screenmatch.model;
 
 import br.com.alura.screenmatch.service.ConsultaChatGPT;
-import com.fasterxml.jackson.annotation.JsonAlias;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 public class Serie {
