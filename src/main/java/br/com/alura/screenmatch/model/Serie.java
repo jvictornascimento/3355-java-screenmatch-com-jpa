@@ -1,12 +1,15 @@
 package br.com.alura.screenmatch.model;
 
+import br.com.alura.screenmatch.service.ConsultaChatGPT;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Objects;
 import java.util.Optional;
 import java.util.OptionalDouble;
 
 public class Serie {
+
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
@@ -23,7 +26,7 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.imagemDeCapa = dadosSerie.imagemDeCapa();
-        this.sinopse = dadosSerie.sinopse();
+        this.sinopse = ConsultaChatGPT.obterTraducao(dadosSerie.sinopse().trim());
     }
 
     public String getTitulo() {
